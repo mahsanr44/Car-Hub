@@ -39,8 +39,10 @@ export default async function Home({ searchParams }: HomeProps) {
         {!isDataEmpty ? (
           <section>
             <div className='home__cars-wrapper'>
-              {allCars?.map((car) => (
-                <CarCard car={car} />
+              {allCars?.map((car,i) => (
+                <div key={i}>
+                  <CarCard car={car} />
+                </div>
               ))}
             </div>
             <ShowMore
@@ -48,7 +50,7 @@ export default async function Home({ searchParams }: HomeProps) {
               isNext={(searchParams.limit || 10) > allCars.length} />
           </section>
         ) : (
-          <div className='home__error-container'>
+          <div className='home__error-container' >
             <h2 className='text-black text-xl font-bold'>Oops! No Cars</h2>
             <p>{allCars?.message}</p>
           </div>
